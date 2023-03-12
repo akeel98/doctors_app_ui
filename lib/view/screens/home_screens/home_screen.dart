@@ -44,27 +44,39 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: searchContainer(size)),
               SizedBox(height: size.width * 0.04),
-              titles(size: size, onTapSeeAll: () {  }, title: 'Specialist Doctors'),
-              SizedBox(height: size.width * 0.04),
-              specialistDoctorsSection(size),
-              SizedBox(height: size.width * 0.04),
-              titles(size: size, onTapSeeAll: () {  }, title: 'Top Doctor'),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Family Medicine'),
               SizedBox(height: size.width * 0.04),
               topDoctorsSection(size),
               SizedBox(height: size.width * 0.04),
-              titles(size: size, onTapSeeAll: () {  }, title: 'Recommendation'),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Internal Medicine'),
               SizedBox(height: size.width * 0.04),
               topDoctorsSection(size),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Pediatrician'),
+              SizedBox(height: size.width * 0.04),
+              topDoctorsSection(size),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Cardiologist'),
+              SizedBox(height: size.width * 0.04),
+              topDoctorsSection(size),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Oncologist'),
+              SizedBox(height: size.width * 0.04),
+              topDoctorsSection(size),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Gastroenterologist'),
+              SizedBox(height: size.width * 0.04),
+              topDoctorsSection(size),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Pulmonologist'),
+              SizedBox(height: size.width * 0.04),
+              topDoctorsSection(size),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Infectious disease'),
+              SizedBox(height: size.width * 0.04),
+              topDoctorsSection(size),
+              titles(size: size, onTapSeeAll: () {  }, title: 'Nephrologist'),
+              SizedBox(height: size.width * 0.04),
+              topDoctorsSection(size),
+              SizedBox(height: size.width * 0.04),
             ],
           ),
         )
       ),
     );
   }
-
-
-
-
-
-
 }
