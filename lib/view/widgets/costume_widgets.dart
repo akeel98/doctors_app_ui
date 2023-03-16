@@ -1,7 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:lite_rolling_switch/lite_rolling_switch.dart';
-
 import '../../consts/colors.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+
+
+awesomeDialog({
+  required context,
+  required String title,
+  required String desc,
+  required Function() okBtn,
+  required Function() cancelBtn,
+}){
+  AwesomeDialog(
+      context: context,
+      dialogBackgroundColor: const Color(0xFF242424),
+      dismissOnTouchOutside: false,
+      autoDismiss: true,
+      dialogType: DialogType.info,
+      animType: AnimType.rightSlide,
+      title: title,
+      desc: desc,
+      btnCancelOnPress: cancelBtn,
+      btnOkOnPress: okBtn,
+  ).show();
+}
 
 InkWell costumeButton(
     {required Size size,

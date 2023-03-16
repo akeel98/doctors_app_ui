@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 
 import '../../../consts/colors.dart';
 import '../../../data/specialist_doctors_data.dart';
+import '../../widgets/costume_widgets.dart';
+import 'comunication_screens/audio_call_screen.dart';
+import 'comunication_screens/messaging_screen.dart';
+import 'comunication_screens/video_call_screen.dart';
 
 class DoctorScreen extends StatefulWidget {
   final String doctorName;
@@ -41,56 +45,145 @@ class _DoctorScreenState extends State<DoctorScreen> {
               )),
         ],
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                doctorCard(size),
-                SizedBox(height: size.height * 0.03),
-                doctorExperienceSection(size),
-                SizedBox(height: size.height * 0.03),
-                Text(
-                  "About Doctor",
-                  style: TextStyle(
-                      fontSize: size.width * 0.043, fontWeight: FontWeight.w700),
-                ),
-                SizedBox(height: size.height * 0.01),
-                const Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam efficitur ante sit amet nulla dignissim, et convallis velit venenatis",
-                style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: size.height * 0.02),
-                Text(
-                  "Working Time",
-                  style: TextStyle(
-                      fontSize: size.width * 0.043, fontWeight: FontWeight.w700),
-                ),
-                SizedBox(height: size.height * 0.01),
-                const Text("Mon-Fri,9:00 AM - 20:00 PM",style: TextStyle(color: Colors.grey),),
-                SizedBox(height: size.height * 0.01),
-                titles(size: size, title: "Reviews", onTapSeeAll: (){}),
-                SizedBox(height: size.height * 0.01),
-                Text(
-                  "Make Appointment",
-                  style: TextStyle(
-                      fontSize: size.width * 0.043, fontWeight: FontWeight.w700),
-                ),
-              ],
-            ),
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  doctorCard(size),
+                  SizedBox(height: size.height * 0.03),
+                  doctorExperienceSection(size),
+                  SizedBox(height: size.height * 0.03),
+                  Text(
+                    "About Doctor",
+                    style: TextStyle(
+                        fontSize: size.width * 0.043,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: size.height * 0.01),
+                  const Text(
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam efficitur ante sit amet nulla dignissim, et convallis velit venenatis",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  SizedBox(height: size.height * 0.02),
+                  Text(
+                    "Working Time",
+                    style: TextStyle(
+                        fontSize: size.width * 0.043,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: size.height * 0.02),
+                  const Text(
+                    "Mon-Fri,9:00 AM - 20:00 PM",
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  SizedBox(height: size.height * 0.03),
+                  Text(
+                    "Communication",
+                    style: TextStyle(
+                        fontSize: size.width * 0.043,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(height: size.height * 0.01),
+                  communicationItem(
+                      size:size,
+                      leadingIcon: Icons.keyboard,
+                      title: 'Messaging',
+                      subtitle: "Chat me up,Share photos.",
+                      onPressed: () {
+                        awesomeDialog(
+                          context: context,
+                          title: 'Confirm',
+                          desc: 'Do you want to messaging ${widget.doctorName} for 5 \$ ??',
+                          okBtn: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (_)=>const MessagingScreen()));
+                          },
+                          cancelBtn: () {},
+                        );
+                      }, pricing: '5 \$'),
+                  const Divider(color:Colors.grey),
+                  communicationItem(
+                      size:size,
+                      leadingIcon: Icons.phone,
+                      title: 'Audio Call',
+                      subtitle: "Call your doctor directly",
+                      onPressed: () {
+
+                        awesomeDialog(
+                          context: context,
+                          title: 'Confirm',
+                          desc: 'Do you want to make a voice call with ${widget.doctorName} for 10 \$ ??',
+                          okBtn: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (_)=>const AudioCallScreen()));
+                          },
+                          cancelBtn: () {},
+                        );
+                      },
+
+                      pricing: '10 \$'),
+                  const Divider(color:Colors.grey),
+                  communicationItem(
+                      size:size,
+                      leadingIcon: Icons.video_call,
+                      title: 'Video Call',
+                      subtitle: "See your doctor live",
+                      onPressed: () {
+                        awesomeDialog(
+                          context: context,
+                          title: 'Confirm',
+                          desc: 'Do you want to make a Video call with ${widget.doctorName} for 15 \$ ??',
+                          okBtn: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (_)=>const VideoCallScreen()));
+                          },
+                          cancelBtn: () {},
+                        );
+                      }, pricing: '15 \$'),
+                  SizedBox(height: size.height * 0.01),
+                  costumeButton(size: size, onPressed: () {  }, title: 'Make Appointment')
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 
-
-
-
-
-
+  InkWell communicationItem({
+  required Size size,
+  required leadingIcon,
+  required String title,
+  required String subtitle,
+  required String pricing,
+  required Function() onPressed
+  }) {
+    return InkWell(
+      onTap: onPressed,
+      child: ListTile(
+        leading:
+            Icon(leadingIcon, size: size.width * 0.08, color: MyColors().blueColor),
+        title: Text(title),
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: size.width * 0.03,
+          ),
+        ),
+        trailing: Text(
+          pricing,
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: size.width * 0.04,
+          ),
+        ),
+      ),
+    );
+  }
 
   Container doctorExperienceSection(Size size) {
     return Container(

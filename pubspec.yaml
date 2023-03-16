@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: ^2.0.17
   image_picker: ^0.8.6+3
   lite_rolling_switch: ^1.0.1
+  awesome_dialog: ^3.0.2
 
 dev_dependencies:
   flutter_test:
