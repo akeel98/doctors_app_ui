@@ -90,7 +90,7 @@ class _DoctorScreenState extends State<DoctorScreen> {
                   ),
                   SizedBox(height: size.height * 0.01),
                   communicationItem(
-                      size:size,
+                      size: size,
                       leadingIcon: Icons.keyboard,
                       title: 'Messaging',
                       subtitle: "Chat me up,Share photos.",
@@ -98,36 +98,47 @@ class _DoctorScreenState extends State<DoctorScreen> {
                         awesomeDialog(
                           context: context,
                           title: 'Confirm',
-                          desc: 'Do you want to messaging ${widget.doctorName} for 5 \$ ??',
+                          desc:
+                              'Do you want to messaging ${widget.doctorName} for 5 \$ ??',
                           okBtn: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_)=>const MessagingScreen()));
-                          },
-                          cancelBtn: () {},
-                        );
-                      }, pricing: '5 \$'),
-                  const Divider(color:Colors.grey),
-                  communicationItem(
-                      size:size,
-                      leadingIcon: Icons.phone,
-                      title: 'Audio Call',
-                      subtitle: "Call your doctor directly",
-                      onPressed: () {
-
-                        awesomeDialog(
-                          context: context,
-                          title: 'Confirm',
-                          desc: 'Do you want to make a voice call with ${widget.doctorName} for 10 \$ ??',
-                          okBtn: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_)=>const AudioCallScreen()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => MessagingScreen(
+                                        doctorName: widget.doctorName,
+                                        doctorImg: widget.doctorImage)));
                           },
                           cancelBtn: () {},
                         );
                       },
-
-                      pricing: '10 \$'),
-                  const Divider(color:Colors.grey),
+                      pricing: '5 \$'),
+                  const Divider(color: Colors.grey),
                   communicationItem(
-                      size:size,
+                      size: size,
+                      leadingIcon: Icons.phone,
+                      title: 'Audio Call',
+                      subtitle: "Call your doctor directly",
+                      onPressed: () {
+                        awesomeDialog(
+                          context: context,
+                          title: 'Confirm',
+                          desc:
+                              'Do you want to make a voice call with ${widget.doctorName} for 10 \$ ??',
+                          okBtn: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => VoiceCallScreen(
+                                        doctorName: widget.doctorName,
+                                        doctorImg: widget.doctorImage)));
+                          },
+                          cancelBtn: () {},
+                        );
+                      },
+                      pricing: '10 \$'),
+                  const Divider(color: Colors.grey),
+                  communicationItem(
+                      size: size,
                       leadingIcon: Icons.video_call,
                       title: 'Video Call',
                       subtitle: "See your doctor live",
@@ -135,15 +146,21 @@ class _DoctorScreenState extends State<DoctorScreen> {
                         awesomeDialog(
                           context: context,
                           title: 'Confirm',
-                          desc: 'Do you want to make a Video call with ${widget.doctorName} for 15 \$ ??',
+                          desc:
+                              'Do you want to make a Video call with ${widget.doctorName} for 15 \$ ??',
                           okBtn: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_)=>const VideoCallScreen()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) =>  VideoCallScreen(doctorImage: widget.doctorImage)));
                           },
                           cancelBtn: () {},
                         );
-                      }, pricing: '15 \$'),
+                      },
+                      pricing: '15 \$'),
                   SizedBox(height: size.height * 0.01),
-                  costumeButton(size: size, onPressed: () {  }, title: 'Make Appointment')
+                  costumeButton(
+                      size: size, onPressed: () {}, title: 'Make Appointment')
                 ],
               ),
             )
@@ -153,19 +170,18 @@ class _DoctorScreenState extends State<DoctorScreen> {
     );
   }
 
-  InkWell communicationItem({
-  required Size size,
-  required leadingIcon,
-  required String title,
-  required String subtitle,
-  required String pricing,
-  required Function() onPressed
-  }) {
+  InkWell communicationItem(
+      {required Size size,
+      required leadingIcon,
+      required String title,
+      required String subtitle,
+      required String pricing,
+      required Function() onPressed}) {
     return InkWell(
       onTap: onPressed,
       child: ListTile(
-        leading:
-            Icon(leadingIcon, size: size.width * 0.08, color: MyColors().blueColor),
+        leading: Icon(leadingIcon,
+            size: size.width * 0.08, color: MyColors().blueColor),
         title: Text(title),
         subtitle: Text(
           subtitle,
