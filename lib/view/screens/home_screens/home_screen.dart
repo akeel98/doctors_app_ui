@@ -1,5 +1,6 @@
 import 'package:doctors/consts/colors.dart';
 import 'package:doctors/data/specialist_doctors_data.dart';
+import 'package:doctors/view/screens/home_screens/appointments_screen.dart';
 import 'package:doctors/view/screens/home_screens/notification_screen.dart';
 import 'package:doctors/view/screens/home_screens/search_screen.dart';
 import 'package:doctors/view/widgets/home_screens_widgets/home_widgtes.dart';
@@ -31,7 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (_)=>const NotificationScreen()));
             }, icon: Icon(Icons.notifications,color: MyColors().blueColor)),
-            IconButton(onPressed: (){}, icon: Icon(Icons.favorite,color: MyColors().blueColor)),
+            IconButton(onPressed: (){
+
+            }, icon: Icon(Icons.favorite,color: MyColors().blueColor)),
           ],
         ),
         body: SingleChildScrollView(

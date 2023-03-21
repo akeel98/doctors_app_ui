@@ -1,7 +1,23 @@
+import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import '../../consts/colors.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
+
+costumeSnackBar({required String content, required size, required context}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(size.width * 0.05),
+      ),
+      backgroundColor: MyColors().blueColor,
+      content: Text(content,style: const TextStyle(
+        color: Colors.white
+        ),
+      ),
+    ),
+  );
+}
 
 awesomeDialog({
   required context,
@@ -9,25 +25,24 @@ awesomeDialog({
   required String desc,
   required Function() okBtn,
   required Function() cancelBtn,
-}){
+}) {
   AwesomeDialog(
-      context: context,
-      dialogBackgroundColor: const Color(0xFF242424),
-      dismissOnTouchOutside: false,
-      autoDismiss: true,
-      dialogType: DialogType.info,
-      animType: AnimType.rightSlide,
-      title: title,
-      desc: desc,
-      btnCancelOnPress: cancelBtn,
-      btnOkOnPress: okBtn,
+    context: context,
+    dialogBackgroundColor: const Color(0xFF242424),
+    dismissOnTouchOutside: false,
+    autoDismiss: true,
+    dialogType: DialogType.info,
+    animType: AnimType.rightSlide,
+    title: title,
+    desc: desc,
+    btnCancelOnPress: cancelBtn,
+    btnOkOnPress: okBtn,
   ).show();
 }
 
-InkWell costumeButton(
-    {required Size size,
-    required VoidCallback onPressed,
-    required String title}) {
+InkWell costumeButton({required Size size,
+  required VoidCallback onPressed,
+  required String title}) {
   return InkWell(
     onTap: onPressed,
     child: Container(
@@ -102,5 +117,26 @@ Container headerBottumSheet(Size size) {
     decoration: BoxDecoration(
         color: MyColors().hintsColor,
         borderRadius: BorderRadius.circular(size.width * 0.1)),
+  );
+}
+
+SizedBox costumeCalender(Size size) {
+  return SizedBox(
+    width: size.width,
+    height: size.height * 0.2,
+    child: CalendarTimeline(
+      initialDate: DateTime(2023, 4, 1),
+      firstDate: DateTime(2023, 1, 1),
+      lastDate: DateTime(2024, 1, 1),
+      onDateSelected: (date) => print(date),
+      leftMargin: 20,
+      monthColor: Colors.blueGrey,
+      dayColor: Colors.teal[200],
+      activeDayColor: Colors.white,
+      activeBackgroundDayColor: MyColors().blueColor,
+      dotsColor: const Color(0xFF333A47),
+      selectableDayPredicate: (date) => date.day != 23,
+      locale: 'en_ISO',
+    ),
   );
 }

@@ -1,4 +1,5 @@
 import 'package:doctors/consts/colors.dart';
+import 'package:doctors/view/screens/home_screens/appointments_screen.dart';
 import 'package:doctors/view/screens/home_screens/home_screen.dart';
 import 'package:doctors/view/screens/home_screens/notification_screen.dart';
 import 'package:doctors/view/screens/profil_screens/profile_screen.dart';
@@ -15,7 +16,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int index = 0;
   List pages = [
     const HomeScreen(),
-    Text("Appointment Screen"),
+    const AppointmentsScreen(),
     const NotificationScreen(),
     const ProfileScreen()
   ];

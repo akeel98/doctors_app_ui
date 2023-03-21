@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../widgets/costume_widgets.dart';
+import '../auth_screens/sign_in.dart';
 import 'appearance_screen.dart';
 import 'help_screen.dart';
 
@@ -138,26 +139,37 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: size.width * 0.4,
-                                  height: size.height * 0.055,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(size.width * 0.1),
-                                    border: Border.all(color: MyColors().blueColor)
+                                InkWell(
+                                  onTap:(){
+                                    Navigator.pop(context);
+                                  },
+                                  child: Container(
+                                    width: size.width * 0.4,
+                                    height: size.height * 0.055,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(size.width * 0.1),
+                                      border: Border.all(color: MyColors().blueColor)
+                                    ),
+                                    child: Text("Cancel",style: TextStyle(color: MyColors().blueColor),),
                                   ),
-                                  child: Text("Cancel",style: TextStyle(color: MyColors().blueColor),),
                                 ),
                                 SizedBox(width: size.width * 0.05),
-                                Container(
-                                  width: size.width * 0.4,
-                                  height: size.height * 0.055,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(size.width * 0.1),
-                                      color: MyColors().blueColor
+                                InkWell(
+                                  onTap:(){
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (_)=> const SignInScreen()));
+                                  },
+                                  child: Container(
+                                    width: size.width * 0.4,
+                                    height: size.height * 0.055,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(size.width * 0.1),
+                                        color: MyColors().blueColor
+                                    ),
+                                    child: const Text("Yes,logout",style: TextStyle(color: Colors.white),),
                                   ),
-                                  child: const Text("Yes,logout",style: TextStyle(color: Colors.white),),
                                 ),
                               ],
                             )

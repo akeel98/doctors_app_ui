@@ -1,3 +1,4 @@
+import 'package:doctors/view/screens/home_screens/make_appontment_screen.dart';
 import 'package:doctors/view/widgets/home_screens_widgets/home_widgtes.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class DoctorScreen extends StatefulWidget {
 }
 
 class _DoctorScreenState extends State<DoctorScreen> {
+  bool isFavorite = false;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -35,8 +37,20 @@ class _DoctorScreenState extends State<DoctorScreen> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.favorite_border, color: MyColors().blueColor)),
+              onPressed: () {
+                setState(() {
+                  isFavorite =! isFavorite;
+                });
+                isFavorite == true ?
+                costumeSnackBar(content: '${widget.doctorName} Added to favorite screen', size: size, context: context)
+                    :
+                costumeSnackBar(content: "${widget.doctorName} Removed from favorite screen", size: size, context: context);
+              },
+              icon: isFavorite == false ?
+              Icon(Icons.favorite_border, color: MyColors().blueColor)
+                  :
+              Icon(Icons.favorite, color: MyColors().blueColor)
+          ),
           IconButton(
               onPressed: () {},
               icon: Icon(
@@ -160,7 +174,10 @@ class _DoctorScreenState extends State<DoctorScreen> {
                       pricing: '15 \$'),
                   SizedBox(height: size.height * 0.01),
                   costumeButton(
-                      size: size, onPressed: () {}, title: 'Make Appointment')
+                      size: size, onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> const MakeAppointmentScreen()));
+                  }, title: 'Make Appointment'),
+                  SizedBox(height: size.height * 0.02),
                 ],
               ),
             )
