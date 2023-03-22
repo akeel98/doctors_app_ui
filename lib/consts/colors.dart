@@ -12,17 +12,5 @@ class MyColors {
     Colors.blue,
     Colors.red,
     Colors.yellow,
-    Colors.blue,
-    Colors.red,
-    Colors.yellow,
-    Colors.blue,
-    Colors.red,
-    Colors.yellow,
-    Colors.blue,
-    Colors.red,
-    Colors.yellow,
-    Colors.blue,
-    Colors.red,
-    Colors.yellow,
   ];
 }
